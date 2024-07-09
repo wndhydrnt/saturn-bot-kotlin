@@ -18,7 +18,6 @@ header:
     - ".*ignore"
     - "README"
     - "**/*.txt"
-    - "go.mod"
-    - "go.sum"
+    - "pom.xml"
 
   comment: on-failure
