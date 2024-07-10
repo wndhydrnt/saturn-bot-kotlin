@@ -23,6 +23,8 @@ jobs:
           server-id: central
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
+      - name: Download protobuf files
+        run: make proto
       - name: Publish package
         run: mvn --batch-mode -P release -Dgpg.keyname=${{ secrets.GPG_PRIVATE_KEY_NAME }} -Dgpg.passphrase=${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }} deploy
         env:

@@ -1,5 +1,7 @@
 PROTOCOL_VERSION?=v0.9.0
 
+proto: src/main/proto/grpc_controller.proto src/main/proto/saturnbot.proto
+
 src/main/proto/grpc_controller.proto:
 	mkdir -p src/main/proto
 	curl -L -o src/main/proto/grpc_controller.proto --silent --fail https://raw.githubusercontent.com/hashicorp/go-plugin/v1.6.0/internal/plugin/grpc_controller.proto
