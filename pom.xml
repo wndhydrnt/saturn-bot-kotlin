@@ -9,7 +9,7 @@
     <version>0.0.0-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Plugin for saturn-bot.</description>
+    <description>Plugin SDK for saturn-bot.</description>
     <url>https://docs.saturn-bot.net</url>
 
     <licenses>
