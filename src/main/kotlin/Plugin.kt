@@ -8,12 +8,14 @@ package net.saturnbot.plugin
 
 open class Plugin {
     open fun apply(ctx: Context) {}
+
     open fun init(config: Map<String, String>) {}
-    open fun filter(ctx: Context): Boolean {
-        return true
-    }
+
+    open fun filter(ctx: Context): Boolean = true
 
     open fun onPrClosed(ctx: Context) {}
+
     open fun onPrCreated(ctx: Context) {}
+
     open fun onPrMerged(ctx: Context) {}
 }

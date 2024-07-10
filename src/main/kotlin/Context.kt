@@ -13,5 +13,5 @@ data class Context(
     val pluginData: MutableMap<String, String>,
     val pullRequest: Saturnbot.PullRequest,
     val repository: Saturnbot.Repository,
-    val templateVars: MutableMap<String, String>? = null
+    val templateVars: MutableMap<String, String>? = null,
 )
