@@ -18,4 +18,4 @@ jobs:
       - name: Download protobuf files
         run: make proto
       - name: Verify
-        run: mvn verify --batch-mode
+        run: mvn verify --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
