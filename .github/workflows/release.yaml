@@ -26,7 +26,7 @@ jobs:
       - name: Download protobuf files
         run: make proto
       - name: Publish package
-        run: mvn --batch-mode -P release -Dgpg.keyname=${{ secrets.GPG_PRIVATE_KEY_NAME }} -Dgpg.passphrase=${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }} deploy
+        run: mvn deploy --batch-mode -P release -Dgpg.keyname=${{ secrets.GPG_PRIVATE_KEY_NAME }} -Dgpg.passphrase=${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }} -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
