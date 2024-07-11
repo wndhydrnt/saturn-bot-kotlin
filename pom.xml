@@ -95,6 +95,8 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <plugins>
             <!-- https://github.com/grpc/grpc-kotlin/tree/master/compiler#maven -->
             <plugin>
@@ -171,7 +173,6 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>${project.basedir}/src/main/java</sourceDir>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
                             </sourceDirs>
                         </configuration>
@@ -184,7 +185,6 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>${project.basedir}/src/test/java</sourceDir>
                                 <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
                             </sourceDirs>
                         </configuration>
