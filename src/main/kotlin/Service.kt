@@ -9,6 +9,9 @@ package net.saturnbot.plugin
 import net.saturnbot.plugin.protocol.PluginServiceGrpcKt
 import net.saturnbot.plugin.protocol.Saturnbot
 
+/**
+ * Service implements the GRPC service to serve the plugin.
+ */
 class Service(
     val plugin: Plugin,
 ) : PluginServiceGrpcKt.PluginServiceCoroutineImplBase() {

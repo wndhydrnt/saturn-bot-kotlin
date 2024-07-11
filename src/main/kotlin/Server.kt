@@ -11,9 +11,18 @@ import io.grpc.ServerBuilder
 import io.grpc.health.v1.HealthCheckResponse
 import io.grpc.protobuf.services.HealthStatusManager
 
+/**
+ * Server serves the plugin.
+ */
 class Server(
     private val plugin: Plugin,
 ) {
+    /**
+     * Start serving the plugin via GRPC.
+     *
+     * A random port is chosen for the GRPC server.
+     * Connection information is written to standard output as required by go-plugin.
+     */
     fun servePlugin() {
         val shutdownController = ShutdownController()
         val healthStatusManager = HealthStatusManager()
