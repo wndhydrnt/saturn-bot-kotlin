@@ -22,7 +22,8 @@ header:
     - "build.gradle.kts"
     - "gradle.properties"
     - "gradle-wrapper.properties"
-    - "gradlew*"
+    - "gradlew"
+    - "gradlew.bat"
     - "settings.gradle.kts"
 
   comment: on-failure
