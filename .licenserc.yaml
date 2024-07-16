@@ -15,9 +15,14 @@ header:
     - "**/*.yaml"
     - "**/*.yml"
     - "**/*.toml"
-    - ".*ignore"
+    - "**/.*ignore"
     - "README"
     - "**/*.txt"
     - "pom.xml"
+    - "build.gradle.kts"
+    - "gradle.properties"
+    - "gradle-wrapper.properties"
+    - "gradlew*"
+    - "settings.gradle.kts"
 
   comment: on-failure
