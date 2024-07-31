@@ -16,21 +16,18 @@ class Service(
     val plugin: Plugin,
 ) : PluginServiceGrpcKt.PluginServiceCoroutineImplBase() {
     override suspend fun executeActions(request: Saturnbot.ExecuteActionsRequest): Saturnbot.ExecuteActionsResponse {
-        val templateVars = LinkedHashMap<String, String>()
         val ctx =
             Context(
                 path = request.path,
-                pluginData = request.context.pluginDataMap,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
-                templateVars = templateVars,
+                runData = request.context.runDataMap,
             )
         try {
             plugin.apply(ctx)
             return Saturnbot.ExecuteActionsResponse
                 .newBuilder()
-                .putAllPluginData(ctx.pluginData)
-                .putAllTemplateVars(ctx.templateVars)
+                .putAllRunData(ctx.runData)
                 .build()
         } catch (e: Exception) {
             return Saturnbot.ExecuteActionsResponse
@@ -41,20 +38,17 @@ class Service(
     }
 
     override suspend fun executeFilters(request: Saturnbot.ExecuteFiltersRequest): Saturnbot.ExecuteFiltersResponse {
-        val templateVars = LinkedHashMap<String, String>()
         val ctx =
             Context(
-                pluginData = request.context.pluginDataMap,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
-                templateVars = templateVars,
+                runData = request.context.runDataMap,
             )
         try {
             val result = plugin.filter(ctx)
             return Saturnbot.ExecuteFiltersResponse
                 .newBuilder()
-                .putAllPluginData(ctx.pluginData)
-                .putAllTemplateVars(templateVars)
+                .putAllRunData(ctx.runData)
                 .setMatch(result)
                 .build()
         } catch (e: Exception) {
@@ -80,9 +74,9 @@ class Service(
     override suspend fun onPrClosed(request: Saturnbot.OnPrClosedRequest): Saturnbot.OnPrClosedResponse {
         val ctx =
             Context(
-                pluginData = request.context.pluginDataMap,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
+                runData = request.context.runDataMap,
             )
         try {
             plugin.onPrClosed(ctx)
@@ -98,9 +92,9 @@ class Service(
     override suspend fun onPrCreated(request: Saturnbot.OnPrCreatedRequest): Saturnbot.OnPrCreatedResponse {
         val ctx =
             Context(
-                pluginData = request.context.pluginDataMap,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
+                runData = request.context.runDataMap,
             )
         try {
             plugin.onPrCreated(ctx)
@@ -116,9 +110,9 @@ class Service(
     override suspend fun onPrMerged(request: Saturnbot.OnPrMergedRequest): Saturnbot.OnPrMergedResponse {
         val ctx =
             Context(
-                pluginData = request.context.pluginDataMap,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
+                runData = request.context.runDataMap,
             )
         try {
             plugin.onPrMerged(ctx)

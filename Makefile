@@ -1,4 +1,8 @@
-PROTOCOL_VERSION?=v0.9.0
+PROTOCOL_VERSION?=v0.10.0
+
+clean:
+	rm -f src/main/proto/grpc_controller.proto
+	rm -rf src/main/proto/saturnbot.proto
 
 proto: src/main/proto/grpc_controller.proto src/main/proto/saturnbot.proto
 

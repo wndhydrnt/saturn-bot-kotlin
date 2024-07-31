@@ -17,12 +17,6 @@ data class Context(
      */
     val path: String? = null,
     /**
-     * Map that is passed between plugins.
-     *
-     * Plugins can use this map to exchange data between each other.
-     */
-    val pluginData: MutableMap<String, String>,
-    /**
      * Information on the current pull request, if available.
      */
     val pullRequest: Saturnbot.PullRequest,
@@ -31,7 +25,10 @@ data class Context(
      */
     val repository: Saturnbot.Repository,
     /**
-     * Template variables a plugin can use for templating.
+     * Data of a run.
+     *
+     * Plugins can use this map to exchange data between each other.
+     * It is also used in templating.
      */
-    val templateVars: MutableMap<String, String>? = null,
+    val runData: MutableMap<String, String>,
 )
