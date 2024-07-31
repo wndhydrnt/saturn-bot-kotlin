@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.1.1...v0.2.0) (2024-07-31)
+
+
+### Features
+
+* Upgrade protocol to v0.10.0 ([85d1e64](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/85d1e649d51031dc6062a5731bbc0794ed136f39))
+
+
+### Documentation
+
+* Add examples ([8c68a5e](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/8c68a5e273ecb878321df5cb9a208a046c5cb037))
+* Fill README ([4c6bcd5](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/4c6bcd5b88e89a6accb6c63cb349341c3c1a08e3))
+
+
+### Miscellaneous Chores
+
+* release 0.2.0 ([7e4eff0](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/7e4eff01a114510ebab65cc098acf4fd523d8f60))
+
 ## [0.1.1](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.1.0...v0.1.1) (2024-07-11)
 
 
