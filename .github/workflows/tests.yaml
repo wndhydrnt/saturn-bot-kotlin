@@ -1,4 +1,4 @@
-name: Integration Test Suite
+name: Tests
 
 on:
   pull_request: {}
@@ -7,7 +7,8 @@ on:
       - main
 
 jobs:
-  run:
+  integration:
+    name: Integration Test Suite
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v4
@@ -28,3 +29,17 @@ jobs:
           mvn package --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
       - name: Run integration tests
         run: make test_integration
+  unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Download protobuf files
+        run: make proto
+      - name: Verify
+        run: mvn verify --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
