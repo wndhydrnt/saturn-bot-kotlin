@@ -11,35 +11,54 @@ import net.saturnbot.plugin.Plugin
 import net.saturnbot.plugin.Server
 import kotlin.io.path.Path
 
-class Example : Plugin() {
-    private var content: String = ""
+class IntegrationTest : Plugin() {
+    private var eventOutTmpFilePath: String = ""
+    private var staticContent: String = ""
 
     override fun init(config: Map<String, String>) {
-        content = config["message"] ?: "Hello Kotlin"
+        eventOutTmpFilePath = config["event_out_tmp_file_path"] ?: ""
+        staticContent = config["content"] ?: ""
     }
 
     override fun filter(ctx: Context): Boolean {
-        // Match a single repository.
-        // Implement more complex matching logic here by calling APIs.
-        return ctx.repository.fullName == "github.com/wndhydrnt/saturn-bot-example"
+        if (ctx.repository.fullName == "git.localhost/integration/test") {
+            return true
+        }
+
+        if (ctx.repository.fullName == "git.localhost/integration/rundata") {
+            ctx.runData["plugin"] = "set by plugin"
+            return true
+        }
+
+        return false
     }
 
     override fun apply(ctx: Context) {
-        val path = ctx.path ?: ""
-        if (path == "") {
-            return
-        }
-        // Create a file in the root of the repository.
-        val file = Path(path, "hello-kotlin.txt").toFile()
-        file.writeText(content)
+        val file = Path(ctx.path ?: "", "integration-test.txt").toFile()
+        file.writeText("$staticContent\n${ctx.runData["dynamic"]}")
+    }
+
+    override fun onPrClosed(ctx: Context) {
+        Path(System.getProperty("java.io.tmpdir"), eventOutTmpFilePath)
+            .toFile()
+            .writeText("Integration Test OnPrClosed")
+    }
+
+    override fun onPrCreated(ctx: Context) {
+        Path(System.getProperty("java.io.tmpdir"), eventOutTmpFilePath)
+            .toFile()
+            .writeText("Integration Test OnPrCreated")
+    }
+
+    override fun onPrMerged(ctx: Context) {
+        Path(System.getProperty("java.io.tmpdir"), eventOutTmpFilePath)
+            .toFile()
+            .writeText("Integration Test OnPrMerged")
     }
 }
 
 fun main() {
-    // Initialize the plugin
-    val example = Example()
-    // Initialize the server and register the plugin
-    val server = Server(example)
-    // Serve the plugin
+    val plugin = IntegrationTest()
+    val server = Server(plugin)
     server.servePlugin()
 }
