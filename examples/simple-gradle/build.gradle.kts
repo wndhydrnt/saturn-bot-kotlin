@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.saturn-bot:saturn-bot-plugin-kotlin:0.1.1")
+    implementation("net.saturn-bot:saturn-bot-plugin-kotlin:0.1.1") // x-release-please-version
 
     testImplementation(kotlin("test"))
 }
