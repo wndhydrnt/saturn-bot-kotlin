@@ -3,7 +3,7 @@ plugins {
     kotlin("jvm") version "2.0.0"
 }
 
-val sdkVersion = "0.1.1" // x-release-please-version
+val sdkVersion = "0.2.1" // x-release-please-version
 
 group = "net.saturnbot.example"
 version = "plugin"
