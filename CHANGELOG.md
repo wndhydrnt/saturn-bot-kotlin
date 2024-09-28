@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.2.0...v0.2.1) (2024-09-28)
+
+
+### Bug Fixes
+
+* **plugin:** Cannot update run data ([#8](https://github.com/wndhydrnt/saturn-bot-kotlin/issues/8)) ([af284c9](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/af284c9cfbf443b133410a105a29da29b062b5b1))
+
 ## [0.2.0](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.1.1...v0.2.0) (2024-07-31)
 
 
