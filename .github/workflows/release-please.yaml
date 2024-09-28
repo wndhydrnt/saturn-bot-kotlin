@@ -13,3 +13,5 @@ jobs:
         with:
           release-type: maven
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          extra-files: |
+            examples/simple-gradle/build.gradle.kts
