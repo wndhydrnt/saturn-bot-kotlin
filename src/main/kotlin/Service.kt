@@ -16,18 +16,21 @@ class Service(
     val plugin: Plugin,
 ) : PluginServiceGrpcKt.PluginServiceCoroutineImplBase() {
     override suspend fun executeActions(request: Saturnbot.ExecuteActionsRequest): Saturnbot.ExecuteActionsResponse {
+        // Copy run data because request.context.runDataMap is read-only
+        val runData = HashMap<String, String>()
+        runData.putAll(request.context.runDataMap)
         val ctx =
             Context(
                 path = request.path,
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
-                runData = request.context.runDataMap,
+                runData = runData,
             )
         try {
             plugin.apply(ctx)
             return Saturnbot.ExecuteActionsResponse
                 .newBuilder()
-                .putAllRunData(ctx.runData)
+                .putAllRunData(runData)
                 .build()
         } catch (e: Exception) {
             return Saturnbot.ExecuteActionsResponse
@@ -38,17 +41,20 @@ class Service(
     }
 
     override suspend fun executeFilters(request: Saturnbot.ExecuteFiltersRequest): Saturnbot.ExecuteFiltersResponse {
+        // Copy run data because request.context.runDataMap is read-only
+        val runData = HashMap<String, String>()
+        runData.putAll(request.context.runDataMap)
         val ctx =
             Context(
                 pullRequest = request.context.pullRequest,
                 repository = request.context.repository,
-                runData = request.context.runDataMap,
+                runData = runData,
             )
         try {
             val result = plugin.filter(ctx)
             return Saturnbot.ExecuteFiltersResponse
                 .newBuilder()
-                .putAllRunData(ctx.runData)
+                .putAllRunData(runData)
                 .setMatch(result)
                 .build()
         } catch (e: Exception) {
@@ -62,7 +68,10 @@ class Service(
     override suspend fun getPlugin(request: Saturnbot.GetPluginRequest): Saturnbot.GetPluginResponse {
         try {
             plugin.init(request.configMap)
-            return Saturnbot.GetPluginResponse.newBuilder().build()
+            return Saturnbot.GetPluginResponse
+                .newBuilder()
+                .setName(plugin.name)
+                .build()
         } catch (e: Exception) {
             return Saturnbot.GetPluginResponse
                 .newBuilder()

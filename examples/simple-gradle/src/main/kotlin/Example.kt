@@ -10,7 +10,7 @@ import net.saturnbot.plugin.Context
 import net.saturnbot.plugin.Plugin
 import kotlin.io.path.Path
 
-class Example : Plugin() {
+class Example : Plugin("simple-gradle") {
     private var content: String = "Hello Kotlin\n"
 
     override fun init(config: Map<String, String>) {

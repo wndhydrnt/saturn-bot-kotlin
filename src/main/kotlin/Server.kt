@@ -10,6 +10,7 @@ import io.grpc.Server
 import io.grpc.ServerBuilder
 import io.grpc.health.v1.HealthCheckResponse
 import io.grpc.protobuf.services.HealthStatusManager
+import java.io.PrintStream
 
 /**
  * Server serves the plugin.
@@ -25,6 +26,10 @@ class Server(
      */
     fun servePlugin() {
         val shutdownController = ShutdownController()
+        // Needed for redirection of stdout/stderr set up later.
+        val stderr = PluginOutputStream()
+        val stdout = PluginOutputStream()
+        val stdioController = StdioController(stdout = stdout, stderr = stderr)
         val healthStatusManager = HealthStatusManager()
         val port = (30000..35000).random()
         val server: Server =
@@ -33,6 +38,7 @@ class Server(
                 .addService(Service(plugin))
                 .addService(shutdownController)
                 .addService(healthStatusManager.healthService)
+                .addService(stdioController)
                 .build()
         shutdownController.addShutdownHook(
             Thread {
@@ -42,6 +48,11 @@ class Server(
         healthStatusManager.setStatus("plugin", HealthCheckResponse.ServingStatus.SERVING)
         server.start()
         println("1|1|tcp|127.0.0.1:$port|grpc")
+        // Everything that needs to be printed to stdout has been printed.
+        // Set up redirection of stdout/stderr streams to saturn-bot.
+        // autoFlush is true to avoid dealing with newlines.
+        System.setErr(PrintStream(stderr, true))
+        System.setOut(PrintStream(stdout, true))
         server.awaitTermination()
     }
 }
