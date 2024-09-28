@@ -25,5 +25,7 @@ header:
     - "gradlew"
     - "gradlew.bat"
     - "settings.gradle.kts"
+    - ".release-please-manifest.json"
+    - "release-please-config.json"
 
   comment: on-failure
