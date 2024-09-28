@@ -4,7 +4,7 @@
 
     <groupId>net.saturnbot.example</groupId>
     <artifactId>saturn-bot-kotlin-maven</artifactId>
-    <version>0.2.1</version> <!-- x-release-please-version -->
+    <version>0.2.2-SNAPSHOT</version> <!-- x-release-please-version -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -105,7 +105,7 @@
         <dependency>
             <groupId>net.saturn-bot</groupId>
             <artifactId>saturn-bot-plugin-kotlin</artifactId>
-            <version>0.2.1</version> <!-- x-release-please-version -->
+            <version>0.2.2-SNAPSHOT</version> <!-- x-release-please-version -->
         </dependency>
     </dependencies>
 

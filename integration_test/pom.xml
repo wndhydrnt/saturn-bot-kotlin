@@ -105,7 +105,7 @@
         <dependency>
             <groupId>net.saturn-bot</groupId>
             <artifactId>saturn-bot-plugin-kotlin</artifactId>
-            <version>0.2.1</version> <!-- x-release-please-version -->
+            <version>0.2.2-SNAPSHOT</version> <!-- x-release-please-version -->
         </dependency>
     </dependencies>
 
