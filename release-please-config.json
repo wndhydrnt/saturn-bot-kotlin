@@ -5,7 +5,8 @@
       "extra-files": [
         "examples/simple-gradle/build.gradle.kts",
         "pom.xml",
-        "examples/simple-maven/pom.xml"
+        "examples/simple-maven/pom.xml",
+        "integration_test/pom.xml"
       ],
       "release-type": "java"
     }
