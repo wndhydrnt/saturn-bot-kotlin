@@ -3,6 +3,8 @@ plugins {
     kotlin("jvm") version "2.0.0"
 }
 
+val sdkVersion = "0.1.1" // x-release-please-version
+
 group = "net.saturnbot.example"
 version = "plugin"
 
@@ -12,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.saturn-bot:saturn-bot-plugin-kotlin:0.1.1") // x-release-please-version
+    implementation("net.saturn-bot:saturn-bot-plugin-kotlin:$sdkVersion")
 
     testImplementation(kotlin("test"))
 }
