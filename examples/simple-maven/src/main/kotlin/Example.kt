@@ -10,7 +10,7 @@ import net.saturnbot.plugin.Context
 import net.saturnbot.plugin.Plugin
 import kotlin.io.path.Path
 
-class Example : Plugin() {
+class Example : Plugin("simple-maven") {
     private var content: String = ""
 
     override fun init(config: Map<String, String>) {

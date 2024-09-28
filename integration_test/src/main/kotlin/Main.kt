@@ -11,7 +11,7 @@ import net.saturnbot.plugin.Plugin
 import net.saturnbot.plugin.Server
 import kotlin.io.path.Path
 
-class IntegrationTest : Plugin() {
+class IntegrationTest : Plugin("integration-test") {
     private var eventOutTmpFilePath: String = ""
     private var staticContent: String = ""
 

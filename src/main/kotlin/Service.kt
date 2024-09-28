@@ -68,7 +68,10 @@ class Service(
     override suspend fun getPlugin(request: Saturnbot.GetPluginRequest): Saturnbot.GetPluginResponse {
         try {
             plugin.init(request.configMap)
-            return Saturnbot.GetPluginResponse.newBuilder().build()
+            return Saturnbot.GetPluginResponse
+                .newBuilder()
+                .setName(plugin.name)
+                .build()
         } catch (e: Exception) {
             return Saturnbot.GetPluginResponse
                 .newBuilder()

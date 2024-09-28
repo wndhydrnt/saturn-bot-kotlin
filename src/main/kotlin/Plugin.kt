@@ -9,7 +9,9 @@ package net.saturnbot.plugin
 /**
  * Plugin is the base class every plugin must extend.
  */
-open class Plugin {
+open class Plugin(
+    val name: String,
+) {
     /**
      * Change files in the checkout of a repository.
      *
