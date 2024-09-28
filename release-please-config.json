@@ -8,6 +8,11 @@
           "type": "xml",
           "path": "pom.xml",
           "xpath": "//project/version"
+        },
+        {
+          "type": "xml",
+          "path": "examples/simple-maven/pom.xml",
+          "xpath": "//project/dependencies/dependency/artifactId[.=\"saturn-bot-plugin-kotlin\"]/../version"
         }
       ],
       "release-type": "java"
