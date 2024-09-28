@@ -2,7 +2,14 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
   "packages": {
     ".": {
-      "extra-files": ["examples/simple-gradle/build.gradle.kts", "examples/simple-maven/pom.xml", "pom.xml"],
+      "extra-files": [
+        "examples/simple-gradle/build.gradle.kts",
+        {
+          "type": "xml",
+          "path": "pom.xml",
+          "xpath": "//project/version"
+        }
+      ],
       "release-type": "java"
     }
   }
