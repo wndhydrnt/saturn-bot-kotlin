@@ -34,6 +34,14 @@ class IntegrationTest : Plugin() {
     }
 
     override fun apply(ctx: Context) {
+        if (ctx.repository.fullName == "git.localhost/integration/log") {
+            // Write to stdout
+            println("Integration Test")
+            // Write to stderr
+            System.err.println("Integration Test")
+            return
+        }
+
         val file = Path(ctx.path ?: "", "integration-test.txt").toFile()
         file.writeText("$staticContent\n${ctx.runData["dynamic"]}")
     }
