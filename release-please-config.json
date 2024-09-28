@@ -3,6 +3,7 @@
   "extra-files": ["examples/simple-gradle/build.gradle.kts"],
   "packages": {
     ".": {
+      "exclude-paths": ["integration_test/pom.xml"],
       "release-type": "maven"
     }
   }
