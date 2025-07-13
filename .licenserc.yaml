@@ -27,5 +27,6 @@ header:
     - "settings.gradle.kts"
     - ".release-please-manifest.json"
     - "release-please-config.json"
+    - ".sdkmanrc"
 
   comment: on-failure
