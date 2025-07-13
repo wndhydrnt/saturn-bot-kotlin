@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/setup-go@v4
       - run: go install github.com/wndhydrnt/saturn-bot@main
+      - run: saturn-bot version
       - uses: actions/checkout@v4
       - name: Set up Java
         uses: actions/setup-java@v4
