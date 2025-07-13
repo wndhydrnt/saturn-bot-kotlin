@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.2.1...v0.3.0) (2025-07-13)
+
+
+### Features
+
+* Implement Shutdown RPC method ([#17](https://github.com/wndhydrnt/saturn-bot-kotlin/issues/17)) ([cf49740](https://github.com/wndhydrnt/saturn-bot-kotlin/commit/cf4974095d4d97961d1d7e43dd3f71fa8063a92a))
+
 ## [0.2.1](https://github.com/wndhydrnt/saturn-bot-kotlin/compare/v0.2.0...v0.2.1) (2024-09-28)
 
 
