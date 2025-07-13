@@ -1,10 +1,11 @@
-PROTOCOL_VERSION?=v0.11.4
+PROTOCOL_VERSION?=v0.12.0
 INTEGRATION_TEST_BIN=integration-test-$(PROTOCOL_VERSION).$(shell uname -s)-$(shell uname -m)
 INTEGRATION_TEST_PATH?=integration_test/$(INTEGRATION_TEST_BIN)
 SATURN_BOT_BIN_PATH?=saturn-bot
 
 clean:
 	rm -f src/main/proto/*.proto
+	rm -f $(INTEGRATION_TEST_PATH)
 
 proto: src/main/proto/grpc_controller.proto src/main/proto/saturnbot.proto src/main/proto/grpc_stdio.proto
 
@@ -28,4 +29,6 @@ $(INTEGRATION_TEST_PATH):
 	chmod +x $(INTEGRATION_TEST_PATH)
 
 test_integration: $(INTEGRATION_TEST_PATH)
+	mvn install --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+	cd integration_test && mvn package --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 	$(INTEGRATION_TEST_PATH) -plugin-path ./integration_test/target/saturn-bot-kotlin-integration-test-latest-jar-with-dependencies.jar -saturn-bot-path $(SATURN_BOT_BIN_PATH)

@@ -63,6 +63,10 @@ class IntegrationTest : Plugin("integration-test") {
             .toFile()
             .writeText("Integration Test OnPrMerged")
     }
+
+    override fun shutdown() {
+        println("Shutdown called")
+    }
 }
 
 fun main() {

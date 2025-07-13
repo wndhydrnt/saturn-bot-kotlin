@@ -71,4 +71,11 @@ open class Plugin(
      * @param[ctx] Current repository context.
      */
     open fun onPrMerged(ctx: Context) {}
+
+    /**
+     * saturn-bot calls this method right before it shuts down the plugin
+     *
+     * Use this method to release or close any resources associated with the plugin.
+     */
+    open fun shutdown() {}
 }
