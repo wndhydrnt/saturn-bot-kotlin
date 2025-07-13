@@ -137,4 +137,19 @@ class Service(
                 .build()
         }
     }
+
+    override suspend fun shutdown(request: Saturnbot.ShutdownRequest): Saturnbot.ShutdownResponse {
+        val response =
+            Saturnbot
+                .ShutdownResponse
+                .newBuilder()
+                .build()
+        try {
+            plugin.shutdown()
+        } catch (e: Exception) {
+            return response
+        }
+
+        return response
+    }
 }
